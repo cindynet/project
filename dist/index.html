@@ -1,0 +1,27 @@
+<!DOCTYPE html><html><head><meta charset=utf-8><title>英雄联盟助手</title><link href=static/css/app.d906f113c08e0070afd0cb57386916a8.css rel=stylesheet></head><body><div id=app></div><script type=text/javascript src=static/js/manifest.9a26e35c560530558668.js></script><script type=text/javascript src=static/js/vendor.9e80a66132aa17a18b03.js></script><script type=text/javascript src=static/js/app.24d9eaa4b4cec160e62c.js></script></body></html><style lang=less></style><script type=text/javascript>(function (doc, win) {
+	    console.log("dpr:"+win.devicePixelRatio); 
+	    var docEle = doc.documentElement,
+	    isIos = navigator.userAgent.match(/iphone|ipod|ipad/gi),
+	    dpr=Math.min(win.devicePixelRatio, 3);/*设备像素比*/
+	    scale = 1 / dpr,/*缩放比例*/
+	    /*是否横屏或大小改变*/
+	    resizeEvent = 'orientationchange' in window ? 'orientationchange' : 'resize';
+	    docEle.dataset.dpr = dpr;
+	    /*创建meta标签，并添加属性，匹配不同屏幕大小*/
+	    var metaEle = doc.createElement('meta');
+	    metaEle.name = 'viewport';
+	    metaEle.content = 'initial-scale=' + scale + ',maximum-scale=' + scale;
+	    docEle.firstElementChild.appendChild(metaEle);
+	 	/*根据屏幕的可见宽度动态设置font-size*/
+	    var recalCulate = function(){
+	        var width = docEle.clientWidth;
+	        if (width / dpr > 1080) {
+	            width = 1080 * dpr;
+	        }
+	        docEle.style.fontSize =(width / 7.5) + 'px';
+	    };
+	    recalCulate();
+	    if (!doc.addEventListener) return;
+	    /*添加监听事件*/
+	    win.addEventListener(resizeEvent, recalCulate, false);
+	})(document, window);</script>
